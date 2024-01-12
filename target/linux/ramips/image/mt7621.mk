@@ -110,6 +110,16 @@ define Device/adslr_g7
 endef
 TARGET_DEVICES += adslr_g7
 
+define Device/qm_b1
+  MTK_SOC := mt7621
+  IMAGE_SIZE := 16064k
+  DEVICE_VENDOR := QM
+  DEVICE_MODEL := B1
+  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-mt76x2 \
+	kmod-usb3 kmod-usb-ledtrig-usbport wpad-openssl
+endef
+TARGET_DEVICES += qm_b1
+
 define Device/afoundry_ew1200
   $(Device/dsa-migration)
   IMAGE_SIZE := 16064k
@@ -780,6 +790,32 @@ define Device/iptime_a8004t
   DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3
 endef
 TARGET_DEVICES += iptime_a8004t
+
+define Device/jcg_jhr-ac836pro
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16064k
+  IMAGES += factory.bin
+  IMAGE/factory.bin := $$(sysupgrade_bin) | check-size | jcg-header 95.1
+  JCG_MAXSIZE := 16064k
+  DEVICE_VENDOR := JCG
+  DEVICE_MODEL := JHR-AC836PRO
+  DEVICE_PACKAGES := kmod-mt7615d_dbdc kmod-usb3 -luci-newapi -wpad-openssl
+endef
+TARGET_DEVICES += jcg_jhr-ac836pro
+
+define Device/jcg_jhr-ac860m
+  $(Device/dsa-migration)
+  IMAGE_SIZE := 16064k
+  IMAGES += factory.bin
+  IMAGE/factory.bin := $$(sysupgrade_bin) | check-size | jcg-header 89.1
+  JCG_MAXSIZE := 16064k
+  DEVICE_VENDOR := JCG
+  DEVICE_MODEL := JHR-AC860M
+  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3 \
+	kmod-usb-ledtrig-usbport
+endef
+TARGET_DEVICES += jcg_jhr-ac860m
 
 define Device/jcg_jhr-ac876m
   $(Device/dsa-migration)

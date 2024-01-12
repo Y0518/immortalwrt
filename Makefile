@@ -12,6 +12,22 @@ empty:=
 space:= $(empty) $(empty)
 $(if $(findstring $(space),$(TOPDIR)),$(error ERROR: The path to the OpenWrt directory must not include any spaces))
 
+wg2626_deconfig:
+	@if [ ! -e .config ]; then \
+		mv ${TOPDIR}/deconfig/wg2626_config .config; \
+	else \
+		rm .config*;\
+		mv ${TOPDIR}/deconfig/wg2626_config .config; \
+	fi
+
+qm-b1_deconfig:
+	@if [ ! -e .config ]; then \
+		mv ${TOPDIR}/deconfig/qm-b1_config .config; \
+	else \
+		rm .config*;\
+		mv ${TOPDIR}/deconfig/qm-b1_config .config; \
+	fi
+
 world:
 
 DISTRO_PKG_CONFIG:=$(shell which -a pkg-config | grep '/usr' | head -n 1)

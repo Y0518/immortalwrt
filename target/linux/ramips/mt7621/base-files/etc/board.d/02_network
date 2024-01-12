@@ -55,6 +55,7 @@ ramips_setup_interfaces()
 	xiaomi,mi-router-4a-gigabit-v2)
 		ucidef_set_interfaces_lan_wan "lan1 lan2" "wan"
 		;;
+	
 	gnubee,gb-pc1)
 		ucidef_set_interface_lan "ethblack ethblue"
 		;;
@@ -64,6 +65,9 @@ ramips_setup_interfaces()
 	linksys,re6500|\
 	netgear,wac104)
 		ucidef_set_interface_lan "lan1 lan2 lan3 lan4"
+		;;
+	qm,b1)
+	        ucidef_set_interfaces_lan_wan "lan" "wan"
 		;;
 	mikrotik,routerboard-750gr3)
 		ucidef_set_interfaces_lan_wan "lan2 lan3 lan4 lan5" "wan"
